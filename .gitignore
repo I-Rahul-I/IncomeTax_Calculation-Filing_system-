@@ -1,0 +1,9 @@
+# Compiled files
+*.exe
+*.o
+*.obj
+build/
+
+# Generated reports
+output/*
+!output/.gitkeep

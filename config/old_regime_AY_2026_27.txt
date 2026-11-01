@@ -1,0 +1,301 @@
+# ============================================================
+# OLD TAX REGIME
+# Financial Year: 2025-26
+# Assessment Year: 2026-27
+#
+# Load together with common_tax_rules_AY_2026_27.txt.
+#
+# All amounts are in rupees.
+# Rates use percentage notation: 5 means 5 percent.
+#
+# Slab format:
+# SLAB.PROFILE=LOWER_LIMIT,UPPER_LIMIT,RATE
+#
+# Adjacent bands share a boundary intentionally.
+# Tax applies to the portion ABOVE the lower limit.
+# INF means no upper limit.
+# ============================================================
+
+REGIME=OLD
+
+
+# ------------------------------------------------------------
+# Resident Individual: below 60
+# ------------------------------------------------------------
+
+SLAB.INDIVIDUAL_RESIDENT_BELOW_60=0,250000,0
+SLAB.INDIVIDUAL_RESIDENT_BELOW_60=250000,500000,5
+SLAB.INDIVIDUAL_RESIDENT_BELOW_60=500000,1000000,20
+SLAB.INDIVIDUAL_RESIDENT_BELOW_60=1000000,INF,30
+
+
+# ------------------------------------------------------------
+# Resident Individual: 60 to below 80
+# ------------------------------------------------------------
+
+SLAB.INDIVIDUAL_RESIDENT_60_TO_79=0,300000,0
+SLAB.INDIVIDUAL_RESIDENT_60_TO_79=300000,500000,5
+SLAB.INDIVIDUAL_RESIDENT_60_TO_79=500000,1000000,20
+SLAB.INDIVIDUAL_RESIDENT_60_TO_79=1000000,INF,30
+
+
+# ------------------------------------------------------------
+# Resident Individual: 80 and above
+# ------------------------------------------------------------
+
+SLAB.INDIVIDUAL_RESIDENT_80_PLUS=0,500000,0
+SLAB.INDIVIDUAL_RESIDENT_80_PLUS=500000,1000000,20
+SLAB.INDIVIDUAL_RESIDENT_80_PLUS=1000000,INF,30
+
+
+# ------------------------------------------------------------
+# Non-resident Individual: all ages
+#
+# Do not apply the enhanced resident age-based exemption.
+# ------------------------------------------------------------
+
+SLAB.INDIVIDUAL_NON_RESIDENT=0,250000,0
+SLAB.INDIVIDUAL_NON_RESIDENT=250000,500000,5
+SLAB.INDIVIDUAL_NON_RESIDENT=500000,1000000,20
+SLAB.INDIVIDUAL_NON_RESIDENT=1000000,INF,30
+
+
+# ------------------------------------------------------------
+# HUF: resident or non-resident
+# ------------------------------------------------------------
+
+SLAB.HUF=0,250000,0
+SLAB.HUF=250000,500000,5
+SLAB.HUF=500000,1000000,20
+SLAB.HUF=1000000,INF,30
+
+
+# ------------------------------------------------------------
+# Taxpayer eligibility flags
+#
+# choosing slab rates or other applicable tax treatment.
+#
+# These flags describe current implementation coverage,
+# not whether the taxpayer is legally taxable.
+# ------------------------------------------------------------
+
+SUPPORT_INDIVIDUAL=true
+SUPPORT_HUF=true
+SUPPORT_COMPANY=false
+SUPPORT_AOP=false
+SUPPORT_BOI=false
+SUPPORT_AJP=false
+
+
+# ------------------------------------------------------------
+# Salary-head adjustments
+#
+# Standard deduction is applied while computing salary income,
+# not again as a Chapter VI-A deduction after GTI.
+# ------------------------------------------------------------
+
+DEDUCTION.STANDARD_SALARY=true,50000
+DEDUCTION.PROFESSIONAL_TAX=true,NONE
+
+HRA_EXEMPTION_ALLOWED=true
+LTA_EXEMPTION_ALLOWED=true
+
+
+# ------------------------------------------------------------
+# Chapter VI-A deduction eligibility
+#
+# TRUE means potentially permitted, subject to taxpayer,
+# payment, income, and section-specific conditions.
+#
+# NONE means no single flat rupee cap in this generic rule.
+# It does NOT mean unlimited deduction without conditions.
+# ------------------------------------------------------------
+
+DEDUCTION.80C=true,150000
+DEDUCTION.80CCC=true,150000
+DEDUCTION.80CCD_1=true,150000
+
+# Combined cap for 80C + 80CCC + 80CCD(1).
+SECTION_80CCE_COMBINED_LIMIT=150000
+
+DEDUCTION.80CCD_1B=true,50000
+
+# Employer NPS deduction requires a salary-percentage test.
+DEDUCTION.80CCD_2=true,NONE
+
+NPS_EMPLOYER_GOVERNMENT_PERCENT=14
+NPS_EMPLOYER_OTHER_PERCENT=10
+
+# Employee/self-employed percentage conditions for 80CCD(1)
+# will be handled in the NPS calculation module.
+
+
+# ------------------------------------------------------------
+# Section 80D
+#
+# Separate limits apply to the self/family and parent groups.
+# Preventive checkup is included within the relevant limits.
+# ------------------------------------------------------------
+
+DEDUCTION.80D=true,NONE
+
+SECTION_80D_NORMAL_GROUP_LIMIT=25000
+SECTION_80D_SENIOR_GROUP_LIMIT=50000
+SECTION_80D_PREVENTIVE_CHECKUP_LIMIT=5000
+
+
+# ------------------------------------------------------------
+# Education-loan interest
+#
+# Eligibility and the permitted deduction period must be checked.
+# ------------------------------------------------------------
+
+DEDUCTION.80E=true,NONE
+
+
+# ------------------------------------------------------------
+# Donations
+#
+# Categories and adjusted-GTI limits require separate calculation.
+# ------------------------------------------------------------
+
+DEDUCTION.80G=true,NONE
+
+SECTION_80G_FULL_DEDUCTION_PERCENT=100
+SECTION_80G_HALF_DEDUCTION_PERCENT=50
+SECTION_80G_QUALIFYING_LIMIT_PERCENT=10
+SECTION_80G_MAX_CASH_DONATION=2000
+
+
+# ------------------------------------------------------------
+# Interest-income deductions
+#
+# Eligibility checks must prevent using 80TTA and 80TTB
+# together for the same taxpayer.
+# ------------------------------------------------------------
+
+DEDUCTION.80TTA=true,10000
+DEDUCTION.80TTB=true,50000
+
+
+# ------------------------------------------------------------
+# Disability-related deductions
+#
+# These are fixed deductions where qualifying conditions are
+# satisfied, not reimbursement-style expense deductions.
+# ------------------------------------------------------------
+
+DEDUCTION.80DD=true,125000
+# Additional deduction routes exposed by the application menu.
+# Fixed ceilings apply only after section-specific eligibility is met.
+DEDUCTION.80CCG=false,0
+DEDUCTION.80DDB=true,100000
+DEDUCTION.80EE=true,50000
+DEDUCTION.80EEA=true,150000
+DEDUCTION.80EEB=true,150000
+DEDUCTION.80GGB=false,0
+DEDUCTION.80GGC=true,NONE
+DEDUCTION.80QQB=true,300000
+DEDUCTION.80RRB=true,300000
+
+DEDUCTION.80U=true,125000
+
+DISABILITY_NORMAL_DEDUCTION=75000
+DISABILITY_SEVERE_DEDUCTION=125000
+DISABILITY_SEVERE_PERCENT=80
+
+
+# ------------------------------------------------------------
+# House-property computation
+#
+# These adjustments belong inside the house-property head.
+# Do not subtract them a second time after GTI.
+# ------------------------------------------------------------
+
+HOUSE_PROPERTY_STANDARD_DEDUCTION_PERCENT=30
+
+DEDUCTION.24B_SELF_OCCUPIED=true,200000
+DEDUCTION.24B_LET_OUT=true,NONE
+
+# The higher self-occupied ceiling is conditional.
+HOUSE_PROPERTY_SELF_OCCUPIED_OTHER_INTEREST_LIMIT=30000
+
+# Maximum eligible house-property loss set-off against
+# other heads, subject to the relevant conditions.
+HOUSE_PROPERTY_OTHER_HEAD_SET_OFF_LIMIT=200000
+
+
+# ------------------------------------------------------------
+# Family pension
+#
+# Deduction is the lower of the configured percentage
+# of eligible family pension and the monetary maximum.
+# This belongs in Other Sources, not salary or Chapter VI-A.
+# ------------------------------------------------------------
+
+FAMILY_PENSION_DEDUCTION_PERCENT=33.3333333333333
+FAMILY_PENSION_DEDUCTION_MAX=15000
+
+
+# ------------------------------------------------------------
+# Section 87A rebate
+#
+# Available only to eligible resident Individuals.
+#
+# Special-rate income restrictions must be checked separately.
+# ------------------------------------------------------------
+
+REBATE_87A_ENABLED=true
+REBATE_87A_RESIDENT_INDIVIDUAL_ONLY=true
+REBATE_87A_TOTAL_INCOME_LIMIT=500000
+REBATE_87A_MAX_AMOUNT=12500
+REBATE_87A_SPECIAL_RATE_TAX_ALLOWED=false
+
+# The old regime does not have the new-regime 87A
+# marginal-relief mechanism.
+REBATE_87A_MARGINAL_RELIEF_ENABLED=false
+
+
+# ------------------------------------------------------------
+# Surcharge settings for supported Individual/HUF calculations
+#
+# These thresholds are EXCLUSIVE:
+# surcharge starts when total income exceeds the threshold.
+#
+# They are ordinary settings, not SLAB entries.
+# The surcharge module must handle marginal relief and
+# component-specific caps before issuing a final computation.
+# ------------------------------------------------------------
+
+SURCHARGE_THRESHOLD_1=5000000
+SURCHARGE_RATE_1=10
+
+SURCHARGE_THRESHOLD_2=10000000
+SURCHARGE_RATE_2=15
+
+SURCHARGE_THRESHOLD_3=20000000
+SURCHARGE_RATE_3=25
+
+SURCHARGE_THRESHOLD_4=50000000
+SURCHARGE_RATE_4=37
+
+SURCHARGE_SPECIFIED_CAPITAL_GAINS_MAX_PERCENT=15
+SURCHARGE_DIVIDEND_MAX_PERCENT=15
+
+SURCHARGE_INCLUDES_SPECIAL_TAX=false
+SURCHARGE_MARGINAL_RELIEF_REQUIRED=true
+
+
+# ------------------------------------------------------------
+# Special-income tax rates
+#
+# Shared rates will be added to the common file when the
+# corresponding modules are implemented.
+#
+# Old-regime rebate interactions must be handled separately.
+# ------------------------------------------------------------
+
+# HRA calculation percentages
+HRA_METRO_SALARY_PERCENT=50
+HRA_NON_METRO_SALARY_PERCENT=40
+HRA_RENT_SALARY_PERCENT=10

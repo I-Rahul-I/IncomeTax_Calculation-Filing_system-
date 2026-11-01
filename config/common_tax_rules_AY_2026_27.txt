@@ -1,0 +1,168 @@
+# ============================================================
+# COMMON TAX RULES
+# Financial Year: 2025-26
+# Assessment Year: 2026-27
+#
+# Amounts are in rupees.
+# Percentage values use percentage notation:
+# 4 means 4 percent, not 0.04.
+#
+# Dates use YYYY-MM-DD.
+# ============================================================
+
+
+# ------------------------------------------------------------
+# Project year
+# ------------------------------------------------------------
+
+FINANCIAL_YEAR=2025-26
+ASSESSMENT_YEAR=2026-27
+
+SUPPORT_TDS_TCS=true
+SUPPORT_ADVANCE_TAX=true
+SUPPORT_SELF_ASSESSMENT_TAX=true
+
+FINANCIAL_YEAR_START=2025-04-01
+FINANCIAL_YEAR_END=2026-03-31
+
+APPLICABLE_ACT=INCOME_TAX_ACT_1961
+
+
+# ------------------------------------------------------------
+# Health and Education Cess
+# Applied to the appropriate tax-plus-surcharge amount.
+# ------------------------------------------------------------
+
+HEALTH_AND_EDUCATION_CESS_RATE=4
+
+
+# ------------------------------------------------------------
+# Standard advance-tax schedule
+#
+# Format:
+# ADVANCE.INSTALLMENT=YYYY-MM-DD,CUMULATIVE_PERCENT
+#
+# These are cumulative targets, not separate quarterly amounts.
+# ------------------------------------------------------------
+
+ADVANCE.1=2025-06-15,15
+ADVANCE.2=2025-09-15,45
+ADVANCE.3=2025-12-15,75
+ADVANCE.4=2026-03-15,100
+
+
+# ------------------------------------------------------------
+# Advance-tax applicability
+#
+# Threshold test is inclusive:
+# applicable tax basis >= threshold.
+#
+# Exemptions and taxpayer-specific conditions must still be
+# checked by the calculation module.
+# ------------------------------------------------------------
+
+ADVANCE_TAX_THRESHOLD=10000
+
+ADVANCE_TAX_LAST_PAYMENT_DATE=2026-03-31
+
+
+# ------------------------------------------------------------
+# Section 234A
+#
+# Monthly simple-interest percentage.
+# A part of a chargeable month is counted as a full month.
+#
+# Do not assume one return due date for every taxpayer.
+# The applicable due date must be supplied or determined later.
+# ------------------------------------------------------------
+
+INTEREST_234A_MONTHLY_RATE=1
+
+
+# ------------------------------------------------------------
+# Section 234B
+#
+# Interest applicability depends on advance tax being below
+# the specified percentage of assessed tax, subject to the
+# applicable statutory conditions.
+#
+# The interest base is not merely the difference from the
+# compliance threshold.
+# ------------------------------------------------------------
+
+INTEREST_234B_MONTHLY_RATE=1
+INTEREST_234B_MINIMUM_ADVANCE_TAX_PERCENT=90
+INTEREST_234B_START_DATE=2026-04-01
+
+
+# ------------------------------------------------------------
+# Section 234C
+#
+# Required cumulative instalment targets are stored above.
+#
+# Interest-trigger percentages are separate:
+# Q1: below 12 percent
+# Q2: below 36 percent
+# Q3: below 75 percent
+# Q4: below 100 percent
+#
+# When interest is triggered, use the applicable statutory
+# shortfall calculation, not simply the trigger percentage.
+# ------------------------------------------------------------
+
+INTEREST_234C_MONTHLY_RATE=1
+
+INTEREST_234C_Q1_TRIGGER_PERCENT=12
+INTEREST_234C_Q2_TRIGGER_PERCENT=36
+INTEREST_234C_Q3_TRIGGER_PERCENT=75
+INTEREST_234C_Q4_TRIGGER_PERCENT=100
+
+INTEREST_234C_Q1_MONTHS=3
+INTEREST_234C_Q2_MONTHS=3
+INTEREST_234C_Q3_MONTHS=3
+INTEREST_234C_Q4_MONTHS=1
+
+
+# ------------------------------------------------------------
+# Special-income rules
+#
+# These entries will be added when the corresponding income
+# modules and eligibility checks are implemented.
+#
+# Parser format:
+# SPECIAL.CODE=RATE,ANNUAL_THRESHOLD_OR_NONE
+#
+# Do not insert an assumed rate for an unsupported category.
+# Missing special-income rules must produce an explicit error
+# if a calculation requests them.
+# ------------------------------------------------------------
+
+
+# ------------------------------------------------------------
+# Implementation notes
+#
+# This file is configuration, not a complete tax-law engine.
+#
+# The calculation modules must separately handle:
+# - advance-tax exemptions
+# - special-income timing exceptions for Section 234C
+# - payment-date effects on interest
+# - applicable rounding
+# - relief and credits affecting the assessed-tax basis
+# - taxpayer-specific conditions
+#
+# Presumptive taxation requires its own schedule and is not
+# represented by the four-checkpoint schedule above.
+# ------------------------------------------------------------
+
+# Special capital-gain rates for FY 2025-26
+SPECIAL.111A=20,NONE
+SPECIAL.112=12.5,NONE
+SPECIAL.112A=12.5,125000
+# Special rates for other-source income categories implemented by the app.
+# Section 115BB: lottery, crossword, gambling and similar winnings.
+# Section 115BBJ: net winnings from online games.
+# Section 115BBH: income from transfer of virtual digital assets.
+SPECIAL.115BB=30,NONE
+SPECIAL.115BBJ=30,NONE
+SPECIAL.115BBH=30,NONE

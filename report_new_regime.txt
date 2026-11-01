@@ -1,0 +1,104 @@
+Taxpayer Name            : Rahul
+Financial Year           : 2025-26
+Assessment Year          : 2026-27
+Taxpayer Category        : Individual
+Residential Status       : Resident
+PAN                      : HURPR4642M
+Age Category             : Below 60 years
+
+Annual Income-Tax Computation Summary
+=====================================
+
+Income
+------
+
+Taxpayer category: Individual
+Regime: New Regime
+
+Salary - Annual salary
+  Basic salary: 1200000.00
+  Dearness allowance: 0.00
+  Bonus: 0.00
+  Commission: 0.00
+  House Rent Allowance received: 0.00
+  Leave Travel Allowance received: 0.00
+  Other taxable allowances: 0.00
+  Taxable perquisites: 0.00
+  Gross salary: 1200000.00
+  Less: HRA exemption: -0.00
+  Less: LTA exemption: -0.00
+  Less: Salary standard deduction: -75000.00
+  Less: Professional tax: -0.00
+  Taxable salary income: 1125000.00
+  Adjustment: Salary standard deduction | Claimed: 75000.00 | Allowed: 75000.00
+    Automatically calculated once for combined annual salary.
+  Adjustment: Professional tax paid | Claimed: 0.00 | Allowed: 0.00
+    Not allowed under this regime.
+
+Gross Total Income: 1125000.00
+
+Deductions
+----------
+
+80C - Section 80C
+  Claimed: 150000.00
+  Allowed: 0.00
+  This deduction is not allowed under the currently loaded regime configuration.
+
+REBATE_87A - Section 87A rebate
+  Claimed: 52500.00
+  Allowed: 52500.00
+  Rebate is applied before surcharge and cess.
+
+Total Chapter VI-A deductions: 0.00
+Total income after deductions and rounding: 1125000.00
+
+Tax Computation
+---------------
+
+Tax on slab income before rebate: 52500.00
+Special-rate tax before rebate: 0.00
+Rebate: 52500.00
+Surcharge: 0.00
+Health and education cess: 0.00
+Total tax liability before credits: 0.00
+
+Payments and Credits
+--------------------
+
+Total TDS credit: 50000.000000
+Total TCS credit: 0.000000
+Total advance tax: 0.000000
+Total self-assessment tax: 0.000000
+Total payments and credits: 50000.000000
+Tax Deducted at Source: tds deducted - 50000.000000 | Date: 2025-05-30
+Credits are entered amounts only. Eligibility and year-wise availability are not independently verified.
+
+Total credits applied: 50000.00
+Balance tax payable: 0.00
+Refund: 50000.00
+
+FINAL RESULT - AMOUNT TO PAY / REFUND
+-------------------------------------
+
+Assessment Year: 2026-27
+Regime: New Regime
+Total tax liability before credits: Rs. 0.00
+Less: payments and credits: Rs. 50000.00
+*** ESTIMATED REFUND: Rs. 50000.00 ***
+Refund is an estimate and remains subject to return processing.
+
+Notes
+-----
+
+- Income head: Salary adjustments above are already included in taxable salary and must not be deducted again after GTI.
+- Exempt income is reported separately and is not included in Gross Total Income.
+- This calculation uses only data entered in the current session. No prior-year data, permanent taxpayer record, or document upload is used.
+- The calculator does not determine legal eligibility for exemptions, deductions, or payment credits.
+- Agricultural income, if declared, requires a separate rate-purpose check before this result is treated as final.
+
+Disclaimer
+----------
+
+This is a session-based computation summary. It does not determine legal eligibility, verify supporting conditions, or constitute tax advice.
+All amounts are based solely on user-entered data and the loaded configuration. No prior-year data, permanent taxpayer record, or document upload is used.
